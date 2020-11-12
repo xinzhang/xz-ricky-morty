@@ -1,15 +1,31 @@
-import Head from "next/head";
-import styles from "styles/Home.module.css";
-import Link from "next/link";
+import Head from 'next/head';
+import styles from 'styles/Home.module.css';
+import Link from 'next/link';
 
 const defaultEndpoint = `https://rickandmortyapi.com/api/character/`;
 
-export async function getServerSideProps({ query }) {
-  const { id } = query;
+// export async function getServerSideProps({ query }) {
+//   const { id } = query;
+//   const res = await fetch(`${defaultEndpoint}${id}`);
+//   const data = await res.json();
+//   return {
+//     props: { data },
+//   };
+// }
+
+export async function getStaticProps({ params }) {
+  const { id } = params;
   const res = await fetch(`${defaultEndpoint}${id}`);
   const data = await res.json();
   return {
     props: { data },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [...Array(100).keys()].map((key) => ({ params: { id: String(key) } })),
+    fallback: false,
   };
 }
 
@@ -25,10 +41,10 @@ export default function Character({ data }) {
         <h1 className={styles.title}>Wubba Lubba Dub Dub!</h1>
 
         <div className={styles.profile}>
-          <div className={styles["profile-image"]}>
+          <div className={styles['profile-image']}>
             <img src={image} alt={name} />
           </div>
-          <div className={styles["profile-details"]}>
+          <div className={styles['profile-details']}>
             <h2>Character Details</h2>
             <ul>
               <li>
@@ -58,7 +74,6 @@ export default function Character({ data }) {
             <a>Back to All Characters</a>
           </Link>
         </p>
-
       </main>
 
       <footer className={styles.footer}>
@@ -67,8 +82,7 @@ export default function Character({ data }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+          Powered by <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
