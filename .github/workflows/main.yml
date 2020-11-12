@@ -34,7 +34,7 @@ jobs:
           aws-region: ap-southeast-2
       - name: Copy Files to S3
         run: |
-          aws s3 sync . s3://xz-webapp/
+          aws s3 sync ./out s3://xz-webapp/
           
 
       
