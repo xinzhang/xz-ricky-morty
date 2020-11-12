@@ -76,7 +76,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width: 100%;
   margin-top: 3rem;
   list-style: none;
   margin-left: 0;
@@ -85,7 +85,7 @@
 
 .card {
   margin: 1rem;
-  flex-basis: 45%;
+  flex-basis: 30%;
   padding: 1.5rem;
   text-align: left;
   color: inherit;

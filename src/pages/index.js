@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "styles/Home.module.css";
 import Link from "next/link";
 
 const defaultEndpoint = `https://rickandmortyapi.com/api/character/`;
