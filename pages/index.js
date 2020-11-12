@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 const defaultEndpoint = `https://rickandmortyapi.com/api/character/`;
 
@@ -47,18 +48,33 @@ export default function Home({ data }) {
   }, [current]);
 
   function handleLoadMore() {
-    updatePage(prev => {
+    updatePage((prev) => {
       return {
         ...prev,
-        current: page?.next
-      }
+        current: page?.next,
+      };
+    });
+  }
+
+  function handleSubmitSearch(e) {
+    e.preventDefault();
+
+    const { currentTarget = {} } = e;
+    const fields = Array.from(currentTarget?.elements);
+    const fieldQuery = fields.find((field) => field.name === "query");
+
+    const value = fieldQuery.value || "";
+    const endpoint = `https://rickandmortyapi.com/api/character/?name=${value}`;
+
+    updatePage({
+      current: endpoint,
     });
   }
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Ricky and morty pedia</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -67,15 +83,22 @@ export default function Home({ data }) {
 
         <p className={styles.description}>Rick and Morty Character Wiki</p>
 
+        <form className={styles.search} onSubmit={handleSubmitSearch}>
+          <input name="query" type="search" />
+          <button>Search</button>
+        </form>
+
         <ul className={styles.grid}>
           {results.map((result) => {
             const { id, name, image } = result;
             return (
               <li key={id} className={styles.card}>
-                <a href="#">
-                  <img src={image} alt={`${name} Thumbnail`} />
-                  <h3>{name}</h3>
-                </a>
+                <Link href="/character/[id]" as={`/character/${id}`}>
+                  <a>
+                    <img src={image} alt={`${name} Thumbnail`} />
+                    <h3>{name}</h3>
+                  </a>
+                </Link>
               </li>
             );
           })}
