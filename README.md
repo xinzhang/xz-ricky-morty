@@ -16,8 +16,8 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 ## Deploy on AWS S3
 
-[demo](https://xz-webapp.s3-ap-southeast-2.amazonaws.com/index.html)
+* [demo](https://xz-webapp.s3-ap-southeast-2.amazonaws.com/index.html)
 
 ## Reference Youtube
-[deploy](https://www.youtube.com/watch?v=D3h91EvRxuk)
-[Code from github and freecodecamp article](https://github.com/colbyfayock/my-rick-and-morty-wiki)
+* [deploy](https://www.youtube.com/watch?v=D3h91EvRxuk)
+* [Code from github and freecodecamp article](https://github.com/colbyfayock/my-rick-and-morty-wiki)
